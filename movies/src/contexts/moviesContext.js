@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RemoveFromMustWatchIcon from "../components/cardIcons/removeFromMustWatch";
 
 export const MoviesContext = React.createContext(null);
 
@@ -42,6 +43,12 @@ const MoviesContextProvider = (props) => {
   };
     console.log(mustWatch);
 
+  const removeFromMustWatch = (movie) => {
+    setMustWatch( mustWatch.filter(
+      (mId) => mId !== movie.id
+    ) )
+  };
+
 
    return (
     <MoviesContext.Provider
@@ -52,6 +59,7 @@ const MoviesContextProvider = (props) => {
         addReview,
         mustWatch,
         addToMustWatch,
+        removeFromMustWatch,
       }}
     >
       {props.children}
