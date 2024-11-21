@@ -4,7 +4,8 @@ import PageTemplate from '../components/templateMovieListPage';
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from 'react-query';
 import Spinner from '../components/spinner';
-import RemoveFromMustWatchIcon from "../components/cardIcons/removeFromMustWatch";
+import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatch";
+
 
 const MustWatchPage = () => {
     const {mustWatch: movieIds } = useContext(MoviesContext);
@@ -37,7 +38,7 @@ const MustWatchPage = () => {
         title="Must Watch"
         movies={movies}
         action={(movie) => {
-          return <RemoveFromMustWatchIcon movie={movie} />
+          return <RemoveFromMustWatch movie={movie} />
         }}
       />
     );
