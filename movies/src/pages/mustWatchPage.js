@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { getUpcomingMovie} from "../api/tmdb-api";
+import { getMovie} from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from 'react-query';
@@ -15,7 +15,7 @@ const MustWatchPage = () => {
       movieIds.map((movieId) => {
         return {
           queryKey: ["movie", { id: movieId }],
-          queryFn: getUpcomingMovie,
+          queryFn: getMovie,
         };
       })
     );
