@@ -1,13 +1,13 @@
 import React from "react";
-import { getNowPlayings } from "../api/tmdb-api";
+import { getTopRatedMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 
-const NowPlayingPage = (props) => {
+const TopRatedMoviesPage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery('discover', getNowPlayings)
+  const {  data, error, isLoading, isError }  = useQuery('discover', getTopRatedMovies)
 
   if (isLoading) {
     return <Spinner />
@@ -21,11 +21,11 @@ const NowPlayingPage = (props) => {
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  
 
   return (
     <PageTemplate
-      title="Now Playing"
+      title="Top Rated"
       movies={movies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
@@ -33,4 +33,4 @@ const NowPlayingPage = (props) => {
     />
 );
 };
-export default NowPlayingPage;
+export default TopRatedMoviesPage;
