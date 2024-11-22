@@ -6,6 +6,8 @@ import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
 import RecommendationList from "../components/movieRecommendations";
+import CreditsList from "../components/movieCredits";
+
 // import useMovie from "../hooks/useMovie";    Redundant
 
 const MoviePage = (props) => {
@@ -29,6 +31,7 @@ const MoviePage = (props) => {
         <>
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
+            <CreditsList movieId={id} />
             <RecommendationList movieId={id} />
           </PageTemplate>
         </>
