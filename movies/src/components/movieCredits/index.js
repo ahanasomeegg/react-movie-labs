@@ -7,14 +7,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 const CreditsList = ({ movieId }) => {
-  const {
-    data: credits,
-    error,
-    isLoading,
-    isError,
-  } = useQuery(["credits", { id: movieId }], getMovieCredits);
+  const {data: credits, error, isLoading, isError,} = 
+  useQuery(["credits", { id: movieId }], getMovieCredits);
 
   if (isLoading) {
     return <Spinner />;
@@ -48,7 +45,9 @@ const CreditsList = ({ movieId }) => {
               />
               <CardContent>
                 <Typography variant="h6" component="div">
+                <Link to={`/actor/${cast.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                   {cast.name}
+                </Link>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Character: {cast.character}
