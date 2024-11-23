@@ -24,7 +24,7 @@ const formControl =
 export default function FilterMoviesCard(props) {
 
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
-
+  
   if (isLoading) {
     return <Spinner />;
   }
@@ -36,6 +36,8 @@ export default function FilterMoviesCard(props) {
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
   }
+
+
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -49,7 +51,13 @@ export default function FilterMoviesCard(props) {
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
-      
+
+
+  const handleRatingChange = (e) => {
+    handleChange(e, "rating", e.target.value);
+  };
+
+
   return (
     <Card 
       sx={{
@@ -61,6 +69,7 @@ export default function FilterMoviesCard(props) {
           <SearchIcon fontSize="large" />
           Filter the movies.
         </Typography>
+
         <TextField
           sx={{...formControl}}
           id="filled-search"
@@ -70,6 +79,7 @@ export default function FilterMoviesCard(props) {
           value={props.titleFilter}
           onChange={handleTextChange}
         />
+
         <FormControl sx={{...formControl}}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
@@ -88,7 +98,33 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        <TextField
+          sx={{ ...formControl }}
+          id="release-year-search"
+          label="Release Year"
+          type="number"
+          variant="filled"
+          placeholder="e.g., 2024"
+          value={props.releaseYearFilter || ""}
+          onChange={(e) => props.onUserInput("releaseYear", e.target.value)}
+          />
+
+
+        {/* Rating Filter */}
+        <FormControl sx={{ ...formControl }}>
+          <InputLabel id="rating-label">Sort by Rating</InputLabel>
+          <Select
+            labelId="rating-label"
+            id="rating-select"
+            value={props.ratingFilter}
+            onChange={handleRatingChange}
+          >
+            <MenuItem value="high">High to Low</MenuItem>
+            <MenuItem value="low">Low to High</MenuItem>
+          </Select>
+        </FormControl>
       </CardContent>
+
       <CardMedia
         sx={{ height: 300 }}
         image={img}
