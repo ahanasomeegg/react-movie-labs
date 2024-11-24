@@ -3,12 +3,16 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid2";
+import Pagination from "@mui/material/Pagination";
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [releaseYearFilter, setReleaseYearFilter] = useState(""); 
   const [ratingSort, setRatingSort] = useState(""); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const moviesPerPage = 10;
+
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -30,11 +34,19 @@ function MovieListPageTemplate({ movies, title, action }) {
       return 0; 
     });
 
+    const startIndex = (currentPage - 1) * moviesPerPage;
+    const endIndex = startIndex + moviesPerPage;
+    const paginatedMovies = displayedMovies.slice(startIndex, endIndex);
+
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
     else if (type === "genre") setGenreFilter(value);
     else if (type === "releaseYear") setReleaseYearFilter(value); 
     else if (type === "rating") setRatingSort(value); 
+  };
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   return (
@@ -56,7 +68,20 @@ function MovieListPageTemplate({ movies, title, action }) {
             ratingFilter={ratingSort}
           />
         </Grid>
-        <MovieList action={action} movies={displayedMovies}></MovieList>
+        <MovieList action={action} movies={paginatedMovies}></MovieList>
+        <Pagination
+            count={Math.ceil(displayedMovies.length / moviesPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+            sx={{
+              position: "fixed", 
+              bottom: "20px", 
+              left: "50%", 
+              transform: "translateX(-50%)", 
+              zIndex: 1000, 
+            }}
+          />
       </Grid>
     </Grid>
   );

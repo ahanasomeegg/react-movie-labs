@@ -1,33 +1,40 @@
 # Assignment 1 - ReactJS app.
 
-Name: [your name]
+Name: Duan Li
 
 ## Overview.
 
-[A brief statement on the content of this repository.]
+Firstly, I have added three more static endpoints--the NowPlaying Page, TopRated Page and Mustwatch Page. 
+
+Secondly, I have added recommendations and credits to enrich the movie details page. The actors' names can be clicked to their own profie pages.
+
+Thirdly, new filtering options are added.(by year and rate) 
+
+AT last, I implemented the pagination function.
 
 ### Features.
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
- 
-+ Feature 1
-+ Feature 2
-+ Feature 3
-+ etc
-+ etc
++ MustWatch Page which can stores your must-watch movies 
++ ActorProfilePage which contains his/her moviies
++ Recommendations on the movie detail page
++ Pagination function
++ flitered by year and rate(high to low, low to high)
 
 ## Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+There is no non-standard requirements to set up. Just follow the normal steps.
 
 ## API endpoints.
 
 [ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
 
 e.g.
-+ Discover list of movies - discover/movie
-+ Movie details - movie/:id
-+ Movie genres = /genre/movie/list
-
++ Discover list of upcoming movies - movie/upcoming
++ Discover list of now_playing movies - movie/now_playing
++ Discover list of top rated movies - movie/top_rated
++ Get movie recommendations - movie/${id}/recommendations
++ Get movie credits - movie/${id}/credits
++ Get actor details - person/${id}
++ Get actor movies - getActorMovies
 ## Routing.
 
 [ List the __new routes__ supported by your app and state the associated page.]
