@@ -17,7 +17,7 @@ AT last, I implemented the pagination function.
 + ActorProfilePage which contains his/her moviies
 + Recommendations on the movie detail page
 + Pagination function
-+ flitered by year and rate(high to low, low to high)
++ fliter by year and sort by rate(high to low, low to high)
 
 ## Setup requirements.
 
